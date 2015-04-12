@@ -1,0 +1,12 @@
+{% for medium in site.data.media %}
+  {% if medium.label == item.source %}
+    <img src="{{ medium.url }}" title="{{ medium.label}}" class="side media">
+  {% endif %}
+{% endfor %}
+
+<h4><a href="{{ item.link }}" target="_blank">{{ item.title}}</a></h4>
+{% if item.perex %}{{ item.perex }}{% else %}{{ item.content | strip_html | truncatewords:35}} <a href="{{ item.url }}">číst dále</a>{% endif %}
+<br/>
+{% if item.date %}<span class="radius secondary label">{{ item.date | date: "%-d.%-m.%Y"}}</span> {% endif %}
+{% for tag in item.tags %} <span class="radius label">{{ tag }}</span>{% endfor %}
+{% unless forloop.last %}  <hr class="separator"/> {% endunless %}
